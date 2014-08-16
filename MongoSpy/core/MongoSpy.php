@@ -61,8 +61,9 @@ class MongoSpy {
 
   public function setCollection($collection) {
     // @TODO: Improve this by checking available DBs before selecting
-    $this->collection = $collection;
-    $this->mongo->selectCollection($this->collection);
+    $this->_collection = $collection;
+    $this->mongo->selectCollection($this->_collection);
+    $this->collection = new \MongoCollection($this->mongo, $this->_collection);
     return $this;
   }
 
